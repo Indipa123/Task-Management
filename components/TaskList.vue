@@ -7,22 +7,24 @@
                 <div class="overflow-x-auto relative mt-4">
                     <div class="w-full border border-gray-200 divide-y divide-gray-200">
                         <!-- Table Header -->
-                        <div class="grid grid-cols-5 bg-gray-100 text-gray-900 uppercase text-sm text-center">
+                        <div class="grid grid-cols-6 bg-gray-100 text-gray-900 uppercase text-sm text-center">
                             <div class="px-6 py-3 border ">Task Name</div>
                             <div class="px-6 py-3 border">Estimated Time</div>
                             <div class="px-6 py-3 border">Category</div>
+                            <div class="px-6 py-3 border">Description</div>
                             <div class="px-6 py-3 border">Status</div>
                             <div class="px-6 py-3 border">Actions</div>
                         </div>
                         <!-- Table Rows -->
                         <div v-for="(task, index) in tasks" :key="index" class="grid">
                             <!-- Main Row -->
-                            <div class="grid grid-cols-5 bg-white text-center">
+                            <div class="grid grid-cols-6 bg-white text-center">
                                 <div class="px-6 py-3 border">{{ task.name }}</div>
                                 <div class="px-6 py-3 border">{{ task.estimatedTime }}</div>
                                 <div class="px-6 py-3 border">{{ task.category }}</div>
+                                <div class="px-6 py-3 border truncate">{{ task.description || '-' }}</div>
                                 <div class="px-6 py-3 border capitalize">{{ task.status }}</div>
-                                <div class="px-2 py-5 border flex gap-1">
+                                <div class="px-2 py-5 border flex gap-1 justify-center">
                                     <button
                                         @click="toggleMore(index)"
                                         class="text-white bg-gray-600 hover:bg-gray-700 px-3 py-1 rounded-lg text-sm"
