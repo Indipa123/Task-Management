@@ -6,7 +6,7 @@ interface Task {
   category: string;
   description: string;
   file: File | null;
-  status: string;
+  status: 'reviewing' | 'approved' | 'reassigned';
 }
 
 export const useTaskStore = defineStore('taskStore', {
@@ -18,7 +18,7 @@ export const useTaskStore = defineStore('taskStore', {
       category: '',
       description: '',
       file: null,
-      status: 'pending',
+      status: 'reviewing',
     } as Task,
   }),
   actions: {
@@ -33,11 +33,16 @@ export const useTaskStore = defineStore('taskStore', {
           category: '',
           description: '',
           file: null,
+          status: 'reviewing',
         } as Task;
       } else {
         alert('Please fill all required fields!');
       }
     },
+    updateTaskStatus(index: number, status: Task['status']) {
+      if (this.tasks[index]) {
+        this.tasks[index].status = status;
+      }
+    },
   },
 });
-

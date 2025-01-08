@@ -75,11 +75,13 @@
         </form>
       </div>
 
-      <div>
-        <TaskList />
-      </div>
+      
       
     </div>
+
+    <div>
+        <TaskList />
+      </div>
   </section>
 </template>
 
