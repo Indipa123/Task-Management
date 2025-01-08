@@ -7,22 +7,25 @@
                 <div class="overflow-x-auto relative mt-4">
                     <div class="w-full border border-gray-200 divide-y divide-gray-200">
                         <!-- Table Header -->
-                        <div class="grid grid-cols-6 bg-gray-100 text-gray-900 uppercase text-sm text-center">
+                        <div class="grid grid-cols-7 bg-gray-100 text-gray-900 uppercase text-sm text-center">
                             <div class="px-6 py-3 border">Task Name</div>
                             <div class="px-6 py-3 border">Estimated Time</div>
                             <div class="px-6 py-3 border">Category</div>
                             <div class="px-6 py-3 border">Description</div>
                             <div class="px-6 py-3 border">File</div>
+                            <div class="px-6 py-3 border">Status</div>
                             <div class="px-6 py-3 border">Actions</div>
+
                         </div>
                         <!-- Table Rows -->
                         <div v-for="(task, index) in tasks" :key="index" class="grid">
                             <!-- Main Row -->
-                            <div class="grid grid-cols-6 bg-white">
+                            <div class="grid grid-cols-7 bg-white">
                                 <div class="px-6 py-3 border">{{ task.name }}</div>
                                 <div class="px-6 py-3 border">{{ task.estimatedTime }}</div>
                                 <div class="px-6 py-3 border">{{ task.category }}</div>
                                 <div class="px-6 py-3 border truncate">{{ task.description || '-' }}</div>
+                                <div class="px-6 py-3 border">{{ task.category }}</div>
                                 <div class="px-6 py-3 border">
                                     <a
                                         v-if="task.file"
@@ -48,6 +51,7 @@
                                         Delete
                                     </button>
                                 </div>
+                                
                             </div>
                             <!-- Expanded Row -->
                             <div

@@ -6,6 +6,7 @@ interface Task {
   category: string;
   description: string;
   file: File | null;
+  status: string;
 }
 
 export const useTaskStore = defineStore('taskStore', {
@@ -17,6 +18,7 @@ export const useTaskStore = defineStore('taskStore', {
       category: '',
       description: '',
       file: null,
+      status: 'pending',
     } as Task,
   }),
   actions: {
