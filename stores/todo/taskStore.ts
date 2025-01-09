@@ -5,8 +5,10 @@ interface Task {
   estimatedTime: string;
   category: string;
   description: string;
-  file: File | null;
+  files: File[];
   status: 'reviewing' | 'approved' | 'reassigned';
+  stage: 'UI Design' | 'API Design' | 'UI Integration';
+  assignedTo: string | null;
 }
 
 export const useTaskStore = defineStore('taskStore', {
@@ -17,23 +19,27 @@ export const useTaskStore = defineStore('taskStore', {
       estimatedTime: '',
       category: '',
       description: '',
-      file: null,
+      files: [],
       status: 'reviewing',
+      stage: 'UI Design',
+      assignedTo: null,
     } as Task,
   }),
   actions: {
     addTask() {
       if (this.newTask.name && this.newTask.estimatedTime && this.newTask.category) {
         const taskToAdd = { ...this.newTask }; // Create a copy
-        this.tasks.push(taskToAdd);
+        this.tasks.unshift(taskToAdd);
         // Clear the new task fields
         this.newTask = {
           name: '',
           estimatedTime: '',
           category: '',
           description: '',
-          file: null,
+          files: [],
           status: 'reviewing',
+          stage: 'UI Design',
+          assignedTo: null,
         } as Task;
       } else {
         alert('Please fill all required fields!');
@@ -42,6 +48,16 @@ export const useTaskStore = defineStore('taskStore', {
     updateTaskStatus(index: number, status: Task['status']) {
       if (this.tasks[index]) {
         this.tasks[index].status = status;
+      }
+    },
+    updateTaskStage(index: number, stage: Task['stage']) {
+      if (this.tasks[index]) {
+        this.tasks[index].stage = stage;
+      }
+    },
+    assignTask(index: number, developer: string) {
+      if (this.tasks[index]) {
+        this.tasks[index].assignedTo = developer;
       }
     },
   },
